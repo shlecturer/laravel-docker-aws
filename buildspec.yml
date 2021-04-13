@@ -10,7 +10,7 @@ phases:
     - aws --version
     # login to ECR
     - eval $(aws ecr get-login-password --region us-east-1 | sed 's|https://||')
-    - REPOSITORY_URI=060894855401.dkr.ecr.us-east-1.amazonaws.com/sandyman/laravel-docker-aws
+    - REPO_URI=060894855401.dkr.ecr.us-east-1.amazonaws.com/sandyman/laravel-docker-aws
     - IMAGE_TAG=1.0
   build:
     commands:
@@ -22,12 +22,11 @@ phases:
     - echo generating app key
     - php artisan key:generate
     - echo build the Docker image...
-    - docker build -t $REPOSITORY_URI:latest .
-    - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+    - docker build -t $REPO_URI:latest .
+    - docker tag $REPO_URI:latest $REPO_URI:$IMAGE_TAG
   post_build:
     commands:
     - echo Build completed on `date`
     - echo Pushing the Docker image
     - docker image ls -a 
-    - docker push $REPOSITORY_URI:$IMAGE_TAG
-
+    - docker push "$REPO_URI:$IMAGE_TAG"
