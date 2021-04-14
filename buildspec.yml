@@ -23,7 +23,7 @@ phases:
     - echo generating app key
     - php artisan key:generate
     - echo build the Docker image...
-    - docker build --tag "$IMAGE_URI" .
+    - docker build --tag "$REPO_URI:latest" .
     - docker tag "$REPO_URI:latest" "$IMAGE_URI"
   post_build:
     commands:
