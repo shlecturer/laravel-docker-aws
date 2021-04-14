@@ -1,4 +1,4 @@
-FROM php:7.3.2-apache-stretch
+FROM 060894855401.dkr.ecr.us-east-1.amazonaws.com/sandyman/php:7.3.2-apache-stretch
 
 LABEL maintainer="Sander Huijsen <sander.huijsen@gmail.com>"
 LABEL version="1.0"
